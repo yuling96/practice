@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        img{
+            vertical-align: top;
+        }
+
+        .box{
+            width: 520px;
+            height: 280px;
+            position:relative;
+            background-color: pink;
+            margin:100px auto;
+             overflow: hidden;
+        }
+        .inner{
+            width: 100%;
+            height: 100%;
+            position:relative;
+        }
+        .inner ul{
+            width: 1000%;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+         li{
+             float:left;
+        }
+        .box ol {
+            position: absolute;
+            left: 50%;
+            margin-left: -50px;
+            bottom: 10px;
+
+        }
+        .box ol li{
+
+            width: 18px;
+            height: 18px;
+            background-color: #fff;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 18px;
+            cursor: pointer;
+        }
+        .box ol li.current {
+            background-color: orange;
+        }
+        .arr_l,.arr_r{
+            width: 30px;
+            height: 60px;
+            background: grey;
+            position:absolute;
+            top:50%;
+            line-height: 60px;
+            text-align: center;
+            font:500 18px/60px;
+           color:#fff;
+        }
+       .arr_l{
+            left:0;
+        }
+        .arr_r{
+            right:0;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+
+            var scroll=document.getElementById("scroll");
+            var ul=scroll.children[0].children[0];
+            var ol=scroll.children[1];
+            var olLis=ol.children;
+            var target= 0,leader=0;
+            var arr=document.getElementById("arr");
+            var al=document.getElementById("al");
+            var ar=document.getElementById("ar");
+            scroll.onmouseover=function(){
+                arr.style.display="block";
+            }
+            scroll.onmouseout=function(){
+                arr.style.display="none";
+            }
+            al.onclick=function(){
+                target-=520;
+            }
+            ar.onclick=function(){
+                target+=520;
+            }
+
+            for(var i=0;i<olLis.length;i++){
+                olLis[i].index=i;
+                olLis[i].onmouseover=function(){
+                    for(var j=0;j<olLis.length;j++){
+                        olLis[j].className="";
+
+                    }
+                    this.className="current";
+                    target=-this.index*520;
+                }
+                setInterval(function(){
+                    if(target>=0){
+                        target=0;
+                    }
+                    else if(target<=-2080){
+                        target=-2080;
+                    }
+                    leader=leader+(target-leader)/50;
+                    ul.style.left=leader+"px";
+                },30);
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="scroll">
+    <div class="inner">
+        <ul>
+            <li><img src="images/1.jpg" alt=""/></li>
+            <li><img src="images/2.jpg" alt=""/></li>
+            <li><img src="images/3.jpg" alt=""/></li>
+            <li><img src="images/4.jpg" alt=""/></li>
+            <li><img src="images/5.jpg" alt=""/></li>
+        </ul>
+    </div>
+    <ol>
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+    <div class="arr" id="arr">
+        <div class="arr_l" id=al><</div>
+        <div class="arr_r" id="ar">></div>
+    </div>
+
+</div>
+
+</body>
+</html>

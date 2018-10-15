@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: #000;
+        }
+        ul{
+            list-style: none;
+        }
+        nav{
+            width: 800px;
+            height: 42px;
+            border-radius:5px ;
+            background: url("images/rss.png") no-repeat right center #fff;
+            position:relative;
+            margin:100px auto;
+        }
+        .cloud{
+            height: 42px;
+            width:83px;
+            position: absolute;
+            top:0;
+            left:0;
+            background: url("images/cloud.gif") no-repeat;
+        }
+        nav ul{
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        nav ul li{
+            float:left;
+           line-height: 42px;
+            width: 83px;
+            height: 42px;
+           cursor:pointer;
+            color:yellow;
+            text-align: center;
+            text-decoration: none;
+        }
+         li a{
+             color:#000000;
+         }
+    </style>
+</head>
+<body>
+  <nav id="nav">
+      <span class="cloud" id="cloud"></span>
+      <ul>
+          <li><a href="#">首页新闻</a></li>
+          <li><a href="">师资力量</a></li>
+          <li><a href="">活动策划</a></li>
+          <li><a href="">企业文化</a></li>
+          <li><a href="">招聘信息</a></li>
+          <li><a href="">公司简介</a></li>
+          <li><a href="">上海校区</a></li>
+          <li><a href="">广州校区</a></li>
+      </ul>
+  </nav>
+</body>
+</html>
+<script>
+    var cloud=document.getElementById("cloud");
+   var nav =document.getElementById("nav");
+
+    var lis=nav.children[1].children;
+    var current=0;
+
+    for(var i=0;i<lis.length;i++){
+        lis[i].index=i;
+        lis[i].onmouseover=function(){
+            for(var j=0;j<lis.length;j++){
+                target=this.offsetLeft
+
+            }
+            lis[i].onmouseout = function() {
+                target = current;     // 鼠标离开  target 是 刚才我们点击的位置
+            }
+            lis[i].onclick = function() {
+                current = this.offsetLeft;   //  点击的时候 吧当前位置 存贮一下
+            }
+        }
+        // 缓动公式
+        var leader = 0, target = 0;
+        setInterval(function(){
+            leader = leader + (target - leader ) / 10;
+            cloud.style.left = leader + "px";
+        },10);
+        }
+
+
+
+</script>

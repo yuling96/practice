@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>tab栏的切换</title>
+    <style>
+        .top,.bottom{
+            width: 400px;
+
+            border:1px solid #ccc;
+
+        }
+        .bottom  div{
+
+            height: 300px;
+            background-color: pink;
+           display: none;
+        }
+        .purple {
+            background-color: purple;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var buttons=document.getElementsByTagName("button");
+            var divs=document.getElementsByClassName("box");
+                for(var i=0;i<buttons.length;i++){
+                    buttons[i].index=i;
+                    buttons[i].onclick=function() {
+
+                        for(var j=0;j<buttons.length;j++)
+                        {
+                            buttons[j].className = "";
+                        }
+                        this.className = "purple";
+                        for(var i=0;i<divs.length;i++)
+                        {
+                            divs[i].style.display = "none";
+                        }
+                        //留下中意的那个 跟点击的序号有关系的
+                        divs[this.index].style.display ="block";
+                      }
+
+                }
+
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class="top" >
+        <button>唐僧</button>
+        <button>孙悟空</button>
+        <button>猪八戒</button>
+        <button>沙僧</button>
+    </div>
+    <div class="bottom" id="divs ">
+        <div class="box" style="display:block;" ><a href="#"><img src="images/1.jpg" alt=""/></a></div>
+        <div class="box">清除色斑</div>
+        <div class="box">男性减肥</div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .top{
+            width: 300px;
+            border:1px solid #cccccc;
+        }
+        .content div{
+          display:none;
+            width: 300px;
+            background: pink;
+            border:1px solid #cccccc;
+            height: 250px;
+        }
+        .purple{
+            background: purple;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var btns=document.getElementsByTagName("button");
+            var divs=document.getElementsByClassName("box");
+            for(var i=0;i<btns.length;i++){
+                btns[i].index=i;
+
+               btns[i].onclick=function(){
+
+                    for(var j=0;j<btns.length;j++){
+                        btns[j].className="";
+                    }
+                    this.className="purple";
+                   for(var i=0;i<divs.length;i++){
+                       divs[i].style.display="none";
+                   }
+                   divs[this.index].style.display="block";
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+   <div class="top">
+       <button >第一个</button>
+       <button>第二个</button>
+       <button>第三个</button>
+       <button>第四个</button>
+   </div>
+<div class="content">
+    <div class="box" style="display:block;">内容1</div>
+    <div class="box">内容2</div>
+    <div class="box">内容3</div>
+    <div class="box">内容4</div>
+</div>
+</body>
+</html>
